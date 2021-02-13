@@ -34,7 +34,7 @@ With the following payload in the body
 
 Provide in query string what type of message you request<br/>
 For example<br/>
-https://localhost:44356/api/message/register?format=0<br/>
+https://localhost:44356/api/message/delete?format=0<br/>
 format=0 will return CSV <br/>
 format=1 will return SMS <br/>
 format=2 will return JSON <br/>
@@ -48,7 +48,7 @@ With the following payload in the body
 
 Provide in query string what type of message you request<br/>
 For example<br/>
-https://localhost:44356/api/message/register?format=0<br/>
+https://localhost:44356/api/message/block?format=0<br/>
 format=0 will return CSV <br/>
 format=1 will return SMS <br/>
 format=2 will return JSON <br/>
