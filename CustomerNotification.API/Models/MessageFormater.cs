@@ -8,17 +8,20 @@ namespace CustomerNotification.API.Models
 {
     public static class MessageFormater
     {
-        public static string GetMessage(Customer customer,Format format)
+        public static string GetMessage(Customer customer, Format format, MessageType type)
         {
             string message = string.Empty;
             switch (format)
             {
-                case Format.JSON:
-                    message = JSON.GetMessage(customer);
-                    break;
-                case Format.XML:
+
+                case Format.CSV:
+                    message = MessageConverter.CSV(customer, type);
                     break;
                 case Format.SMS:
+                    message = MessageConverter.SMS(customer, type);
+                    break;
+                case Format.JSON:
+                    message = MessageConverter.JSON(customer, type);
                     break;
                 default:
                     break;
@@ -26,9 +29,6 @@ namespace CustomerNotification.API.Models
 
             return message;
         }
-        public static string GetJson()
-        {
-            return string.Empty;
-        }
+
     }
 }

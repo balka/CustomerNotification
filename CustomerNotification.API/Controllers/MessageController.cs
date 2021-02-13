@@ -17,26 +17,45 @@ namespace CustomerNotification.API.Controllers
         }
 
         [HttpPost]
+        [Route("register")]
         public async Task<IActionResult> RegisterCustomer(Customer customer,[FromQuery]Format format) 
         {
-            if (customer == null)
+            string message = string.Empty;
+            if (customer != null)
             {
-              var message =  MessageFormater.GetMessage(customer,format);
+                message =  MessageFormater.GetMessage(customer,format,MessageType.Register);
             }
-            await _messagingService.SendMessageAsync(customer.UserId, MessageType.NewUserRegistered);
-            return null;
+            await _messagingService.SendMessageAsync(customer.UserId, message);
+            return StatusCode(201,customer);
 
             
         }
-        //[HttpGet]
-        //public async Task<IActionResult> DeleteCustomer(int id)
-        //{
-        //    _messagingService.SendMessageAsync(id, MessageType.UserDeleted);
-        //}
-        //[HttpGet]
-        //public async Task<IActionResult> BlockCustomer()
-        //{
-        //    _messagingService.SendMessageAsync(int id, MessageType.UserBlocked);
-        //}
-    } 
+        [HttpPost]
+        [Route("delete")]
+        public async Task<IActionResult> DeleteCustomer(Customer customer, [FromQuery] Format format)
+        {
+            string message = string.Empty;
+            if (customer != null)
+            {
+                message = MessageFormater.GetMessage(customer, format, MessageType.Delete);
+            }
+            await _messagingService.SendMessageAsync(customer.UserId, message);
+            return StatusCode(200,$"User with id {customer.UserId} successfully deleted");
+
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> BlockCustomer(Customer customer, [FromQuery] Format format)
+        {
+            string message = string.Empty;
+            if (customer != null)
+            {
+                message = MessageFormater.GetMessage(customer, format, MessageType.Block);
+            }
+            await _messagingService.SendMessageAsync(customer.UserId, message);
+            return StatusCode(200, $"User with id {customer.UserId} successfully blocked");
+
+
+        }
+    }
 }

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace CustomerNotification.API.Models
 {
-    public static class MessageType
+    public enum MessageType
     {
-        public const string NewUserRegistered = "NewUserRegistered";
-        public const string UserDeleted = "UserDeleted";
-        public const string UserBlocked = "UserBlocked";
+        Register,
+        Delete,
+        Block
     }
 }

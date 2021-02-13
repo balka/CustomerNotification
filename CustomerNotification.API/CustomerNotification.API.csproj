@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="servicestack.text" Version="5.10.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CustomerNotificaton.Services\CustomerNotificaton.Services.csproj" />
   </ItemGroup>
 

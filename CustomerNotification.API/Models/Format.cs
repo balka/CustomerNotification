@@ -7,9 +7,8 @@ namespace CustomerNotification.API.Models
 {
     public enum Format
     {
-        JSON,
-        XML,
-        SMS
-
+        CSV,
+        SMS,
+        JSON
     }
 }
